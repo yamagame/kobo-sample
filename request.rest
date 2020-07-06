@@ -1,1 +1,10 @@
-GET http://localhost:5000/hello HTTP/1.1
+@hostname = localhost
+
+###
+GET http://{{hostname}}:5000/hello HTTP/1.1
+
+###
+POST http://{{hostname}}:3090/speech HTTP/1.1
+Content-Type: text/plain
+
+こんにちは
