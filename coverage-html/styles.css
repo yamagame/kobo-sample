@@ -7,8 +7,22 @@ h1 {
 h2 {
 }
 
+/*
+h2:before {
+  content: '■';
+  margin-right: 8px;
+}
+*/
+
 h3 {
 }
+
+/*
+h3:before {
+  content: '○';
+  margin-right: 8px;
+}
+*/
 
 h4 {
 }
