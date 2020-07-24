@@ -45,7 +45,7 @@ const lines = text.map( (line , i) => {
   if (line.indexOf('#') >= 0) {
     return `\t<h1 class="title">${line.slice(1).trim()}</h1>`;
   }
-  return line.split('、').map( word => `\t<a class="word" id="${makeId('word')} "href="#" onclick="return openGoogle(this);">${word}</a>` ).join('\n');
+  return line.split('、').map( word => `\t<a class="word" id="${makeId('word')}" href="#" onclick="return openGoogle(this);">${word}</a>` ).join('\n');
 })
 
 const html = `
