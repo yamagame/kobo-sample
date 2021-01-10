@@ -19,12 +19,16 @@ const CountUp: React.FC<CountUpProps> = ({
   onClick,
 }) => {
   return (
-    <>
-      <p>
-        {state} ({label})
-      </p>
-      <button onClick={onClick}>カウントアップ</button>
-    </>
+    <div className="rounded border-2 m-2 p-1">
+      <div className="text-center text-sm">{label}</div>
+      <div className="text-center">{state}</div>
+      <button
+        className="block rounded bg-blue-400 px-2 py-1 m-1 text-white mx-auto"
+        onClick={onClick}
+      >
+        カウントアップ
+      </button>
+    </div>
   )
 }
 
@@ -38,7 +42,7 @@ function Counter() {
     setComponentCounterState,
   ] = React.useState(0)
   return (
-    <>
+    <div className="border-2 inline-block m-2">
       <CountUp
         label="コンポーネントステート"
         state={componentCounterState}
@@ -60,7 +64,7 @@ function Counter() {
           )
         }
       />
-    </>
+    </div>
   )
 }
 
