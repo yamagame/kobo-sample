@@ -7,26 +7,21 @@ import { Provider } from 'react-redux'
 import {
   createStore as reduxCreateStore,
   Reducer,
+  combineReducers,
 } from 'redux'
+import {
+  AppState,
+  GlobalState,
+  AppStateAction,
+} from './model'
 
-interface AppState {
-  state: {
-    globalCounterState: number
-  }
-}
-
-const initialState: AppState = {
-  state: {
+const initialState: GlobalState = {
+  appState: {
     globalCounterState: 0,
   },
 }
 
-export type Action = {
-  type: 'change state'
-  payload: AppState
-}
-
-export const appState: Reducer<AppState, Action> = (
+export const appState: Reducer<AppState, AppStateAction> = (
   state,
   action
 ) => {
@@ -41,10 +36,15 @@ export const appState: Reducer<AppState, Action> = (
         return state
     }
   }
-  return initialState
+  return initialState.appState
 }
 
-const store = reduxCreateStore(appState, initialState)
+const store = reduxCreateStore(
+  combineReducers({
+    appState,
+  }),
+  initialState
+)
 
 ReactDOM.render(
   <React.StrictMode>
