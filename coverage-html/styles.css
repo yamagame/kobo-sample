@@ -1,3 +1,8 @@
+* {
+ margin: 0;
+ padding: 0;
+}
+
 body {
 }
 
@@ -34,6 +39,14 @@ a {
 }
 
 .title {
+ margin: 20px;
+ padding: 40px;
+ border: solid 20px green;
+ background-color: rgb(255, 166, 0);
+ color: white;
+ font-size: 2em;
+ text-align: center;
+ border-radius: 40px;
 }
 
 .heading {
@@ -47,3 +60,4 @@ a {
 
 .word {
 }
+
