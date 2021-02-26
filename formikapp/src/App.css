@@ -1,0 +1,27 @@
+.input {
+  width: 240px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.button {
+  width: 240px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.alert {
+  color: red;
+  font-size: 0.8em;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
