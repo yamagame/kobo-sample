@@ -25,7 +25,7 @@ function App() {
           return errors
         }}
         onSubmit={async (values, { setSubmitting }) => {
-          await axios.post('/form', values)
+          console.log(await axios.post('/form', values))
           setSubmitting(false)
         }}
       >
