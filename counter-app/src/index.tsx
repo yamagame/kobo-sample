@@ -14,6 +14,7 @@ import {
   GlobalState,
   AppStateAction,
 } from './model'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 const initialState: GlobalState = {
   appState: {
@@ -43,7 +44,8 @@ const store = reduxCreateStore(
   combineReducers({
     appState,
   }),
-  initialState
+  initialState,
+  composeWithDevTools()
 )
 
 ReactDOM.render(
