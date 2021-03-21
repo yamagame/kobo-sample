@@ -1,60 +1,35 @@
-import React from 'react'
-import { mount, configure } from 'enzyme'
 import { Provider } from 'react-redux'
-import Adapter from 'enzyme-adapter-react-16'
 import App from './App'
+import { render, unmountComponentAtNode } from 'react-dom'
+import { act } from 'react-dom/test-utils'
+import pretty from 'pretty'
 
-import {
-  createStore as reduxCreateStore,
-  Reducer,
-  combineReducers,
-} from 'redux'
-import {
-  AppState,
-  GlobalState,
-  AppStateAction,
-} from './model'
+import { createStore as reduxCreateStore } from 'redux'
 
-configure({ adapter: new Adapter() })
+import { initialState, appState } from './appState'
 
-const initialState: GlobalState = {
-  appState: {
-    globalCounterState: 0,
-  },
-}
+const store = reduxCreateStore(appState, initialState)
 
-export const appState: Reducer<AppState, AppStateAction> = (
-  state,
-  action
-) => {
-  if (state) {
-    switch (action.type) {
-      case 'change state':
-        return {
-          ...state,
-          ...action.payload,
-        } as AppState
-      default:
-        return state
-    }
-  }
-  return initialState.appState
-}
+let container = document.createElement('div')
 
-const store = reduxCreateStore(
-  combineReducers({
-    appState,
-  }),
-  initialState
-)
+beforeEach(() => {
+  container = document.createElement('div')
+  document.body.appendChild(container)
+})
 
-test('renders learn react link', async () => {
-  const wrapper = mount(
-    <Provider store={store}>
-      <App></App>
-    </Provider>
-  )
-  console.log(wrapper)
-  // const linkElement = screen.getByText(/learn react/i)
-  // expect(linkElement).toBeInTheDocument()
+afterEach(() => {
+  unmountComponentAtNode(container)
+  container.remove()
+})
+
+test('renders counte app', async () => {
+  act(() => {
+    render(
+      <Provider store={store}>
+        <App></App>
+      </Provider>,
+      container
+    )
+  })
+  expect(pretty(container.innerHTML)).toMatchSnapshot('App')
 })

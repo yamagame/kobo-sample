@@ -1,11 +1,7 @@
 import React from 'react'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  GlobalState,
-  AppState,
-  AppStateChange,
-} from './model'
+import { AppState, setGlobalCounterState } from './appState'
 
 type CountUpProps = {
   label: string
@@ -34,8 +30,8 @@ const CountUp: React.FC<CountUpProps> = ({
 
 function Counter() {
   const dispatch = useDispatch()
-  const state = useSelector<GlobalState, AppState>(
-    (state) => state.appState
+  const state = useSelector<AppState, AppState>(
+    (state) => state
   )
   const [
     componentCounterState,
@@ -57,10 +53,9 @@ function Counter() {
         state={state.globalCounterState}
         onClick={() =>
           dispatch(
-            AppStateChange({
-              globalCounterState:
-                state.globalCounterState + 1,
-            })
+            setGlobalCounterState(
+              state.globalCounterState + 1
+            )
           )
         }
       />

@@ -4,46 +4,12 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
-import {
-  createStore as reduxCreateStore,
-  Reducer,
-  combineReducers,
-} from 'redux'
-import {
-  AppState,
-  GlobalState,
-  AppStateAction,
-} from './model'
+import { createStore as reduxCreateStore } from 'redux'
+import { appState, initialState } from './appState'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-const initialState: GlobalState = {
-  appState: {
-    globalCounterState: 0,
-  },
-}
-
-export const appState: Reducer<AppState, AppStateAction> = (
-  state,
-  action
-) => {
-  if (state) {
-    switch (action.type) {
-      case 'change state':
-        return {
-          ...state,
-          ...action.payload,
-        } as AppState
-      default:
-        return state
-    }
-  }
-  return initialState.appState
-}
-
 const store = reduxCreateStore(
-  combineReducers({
-    appState,
-  }),
+  appState,
   initialState,
   composeWithDevTools()
 )
