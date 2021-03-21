@@ -5,8 +5,14 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import { createStore as reduxCreateStore } from 'redux'
-import { appState, initialState } from './appState'
+import {
+  appState,
+  initialState,
+  AppState,
+} from './appState'
 import { composeWithDevTools } from 'redux-devtools-extension'
+
+export type GlobalState = AppState
 
 const store = reduxCreateStore(
   appState,
