@@ -10,7 +10,7 @@ import { initialState, appState } from './appState'
 
 const store = reduxCreateStore(appState, initialState)
 
-let container = document.createElement('div')
+let container: Element | null
 
 beforeEach(() => {
   container = document.createElement('div')
@@ -18,8 +18,8 @@ beforeEach(() => {
 })
 
 afterEach(() => {
-  unmountComponentAtNode(container)
-  container.remove()
+  unmountComponentAtNode(container!)
+  container!.remove()
 })
 
 test('renders counte app', async () => {
@@ -31,5 +31,7 @@ test('renders counte app', async () => {
       container
     )
   })
-  expect(pretty(container.innerHTML)).toMatchSnapshot('App')
+  expect(pretty(container!.innerHTML)).toMatchSnapshot(
+    'App'
+  )
 })
